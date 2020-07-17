@@ -18,15 +18,15 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader"
+            loader: 'ts-loader'
           }
         ]
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: 'source-map-loader'
       },
       {
         test: /\.html$/,
