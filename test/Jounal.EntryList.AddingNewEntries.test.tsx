@@ -2,6 +2,8 @@ import {render} from '@testing-library/react'
 import {describe, expect, it} from '@jest/globals'
 import * as React from 'react'
 import {Journal} from '../src/journal'
+import {DateString} from "../src/dateString";
+import {Listing} from "../src/JournalEntry";
 
 describe('the journal entries are listed', function () {
     it('shows an empty list when there are none', () => {
@@ -11,8 +13,8 @@ describe('the journal entries are listed', function () {
         expect(listingEntries).toHaveLength(0)
     })
     it('shows a single entry under its date', () => {
-        const entry = {
-            date: '2020-07-11T22:10:06Z', text: 'tomat'
+        const entry: Listing = {
+            date: new DateString('2020-07-11T22:10:06Z'), title: 'tomat', text: ''
         }
         const {container} = render(<Journal listings={[entry]}/>)
         const listing = container.querySelector('.listing [data-date="2020-07-11"]')
@@ -22,12 +24,14 @@ describe('the journal entries are listed', function () {
     })
 
     it('shows a several entries from one day under the same date', () => {
-        const entries = [{
-            date: '2020-07-17T22:10:06Z',
-            text: 'one'
+        const entries: Listing[] = [{
+            date: new DateString('2020-07-17T22:10:06Z'),
+            title: 'one',
+            text: ''
         }, {
-            date: '2020-07-17T23:10:06Z',
-            text: 'two'
+            date: new DateString('2020-07-17T23:10:06Z'),
+            title: 'two',
+            text: ''
         }]
         const {container} = render(<Journal listings={entries}/>)
         const listing = container.querySelector('.listing [data-date="2020-07-17"]')
@@ -38,12 +42,14 @@ describe('the journal entries are listed', function () {
     })
 
     it('shows a several entries under their different dates', () => {
-        const entries = [{
-            date: '2020-07-18T22:10:06Z',
-            text: 'one'
+        const entries: Listing[] = [{
+            date: new DateString('2020-07-18T22:10:06Z'),
+            title: 'one',
+            text: ''
         }, {
-            date: '2020-07-17T23:10:06Z',
-            text: 'two'
+            date: new DateString('2020-07-17T23:10:06Z'),
+            title: 'two',
+            text: ''
         }]
         const {container} = render(<Journal listings={entries}/>)
 

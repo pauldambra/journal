@@ -4,6 +4,7 @@ const react_1 = require("@testing-library/react");
 const globals_1 = require("@jest/globals");
 const React = require("react");
 const journal_1 = require("../src/journal");
+const dateString_1 = require("../src/dateString");
 globals_1.describe('the journal entries are listed', function () {
     globals_1.it('shows an empty list when there are none', () => {
         const { container } = react_1.render(React.createElement(journal_1.Journal, { listings: [] }));
@@ -13,7 +14,7 @@ globals_1.describe('the journal entries are listed', function () {
     });
     globals_1.it('shows a single entry under its date', () => {
         const entry = {
-            date: '2020-07-11T22:10:06Z', text: 'tomat'
+            date: new dateString_1.DateString('2020-07-11T22:10:06Z'), title: 'tomat', text: ''
         };
         const { container } = react_1.render(React.createElement(journal_1.Journal, { listings: [entry] }));
         const listing = container.querySelector('.listing [data-date="2020-07-11"]');
@@ -23,11 +24,13 @@ globals_1.describe('the journal entries are listed', function () {
     });
     globals_1.it('shows a several entries from one day under the same date', () => {
         const entries = [{
-                date: '2020-07-17T22:10:06Z',
-                text: 'one'
+                date: new dateString_1.DateString('2020-07-17T22:10:06Z'),
+                title: 'one',
+                text: ''
             }, {
-                date: '2020-07-17T23:10:06Z',
-                text: 'two'
+                date: new dateString_1.DateString('2020-07-17T23:10:06Z'),
+                title: 'two',
+                text: ''
             }];
         const { container } = react_1.render(React.createElement(journal_1.Journal, { listings: entries }));
         const listing = container.querySelector('.listing [data-date="2020-07-17"]');
@@ -38,11 +41,13 @@ globals_1.describe('the journal entries are listed', function () {
     });
     globals_1.it('shows a several entries under their different dates', () => {
         const entries = [{
-                date: '2020-07-18T22:10:06Z',
-                text: 'one'
+                date: new dateString_1.DateString('2020-07-18T22:10:06Z'),
+                title: 'one',
+                text: ''
             }, {
-                date: '2020-07-17T23:10:06Z',
-                text: 'two'
+                date: new dateString_1.DateString('2020-07-17T23:10:06Z'),
+                title: 'two',
+                text: ''
             }];
         const { container } = react_1.render(React.createElement(journal_1.Journal, { listings: entries }));
         const first = container.querySelector('.listing [data-date="2020-07-17"]');
