@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Listing} from "./Journal";
+import {Listing} from "./journal";
 
 const cyrb53 = function(str: string, seed = 0) {
     let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;

@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(),
@@ -13,15 +13,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.ts(x?)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'ts-loader'
-          }
-        ]
-      },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
         enforce: 'pre',
@@ -34,15 +25,9 @@ module.exports = {
           loader: 'prerender-loader?string',
           options: {
             string: true,
-            entry: './src/index.tsx'
+            entry: './src/index.js'
           }
         }
-      },
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'standard-loader',
-        exclude: /(node_modules|bower_components|docs)/
       }
     ]
   },

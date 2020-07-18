@@ -1,5 +1,5 @@
 import * as React from "react";
-import {EntryList} from "./EntryList";
+import {EntryList} from "./entryList";
 
 export interface Listing {
     date: string,

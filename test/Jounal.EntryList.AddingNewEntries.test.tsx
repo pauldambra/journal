@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react'
 import {describe, expect, it} from '@jest/globals'
 import * as React from 'react'
-import {Journal} from '../src/Journal'
+import {Journal} from '../src/journal'
 
 describe('the journal entries are listed', function () {
     it('shows an empty list when there are none', () => {
