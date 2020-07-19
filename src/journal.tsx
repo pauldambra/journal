@@ -1,34 +1,33 @@
-import * as React from "react";
-import {EntryList} from "./entryList";
-import {Listing} from "./JournalEntry";
+import * as React from 'react'
+import { EntryList } from './entryList'
+import { JournalEntry } from './JournalEntry'
 
 export interface JournalProps {
-    listings: Listing[];
+    entries: JournalEntry[];
 }
 
 const EditorPane = () => {
-    const styles = {
-        flexGrow: 1,
-        backgroundColor: "white",
-        height: "96%",
-    }
-    return (<div style={styles}></div>)
+  const styles = {
+    flexGrow: 1,
+    backgroundColor: 'white',
+    height: '96%'
+  }
+  return (<div style={styles} />)
 }
 
 export const Journal = (props: JournalProps) => {
+  const styles = {
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'grey',
+    display: 'flex',
+    alignItems: 'center'
+  }
 
-    const styles = {
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "grey",
-        display: "flex",
-        alignItems: "center",
-    }
-
-    return (
-        <div style={styles}>
-            <EntryList listings={props.listings}/>
-            <EditorPane/>
-        </div>
-    )
+  return (
+    <div style={styles}>
+      <EntryList entries={props.entries} />
+      <EditorPane />
+    </div>
+  )
 }

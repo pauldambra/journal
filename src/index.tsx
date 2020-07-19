@@ -1,5 +1,15 @@
 import * as React from 'react'
 import { hydrate } from 'react-dom'
 import { Journal } from './journal'
+import { DateString } from './dateString'
+import { JournalEntry } from './JournalEntry'
 
-hydrate(<Journal listings={[]} />, document.getElementById('root'))
+const a = new JournalEntry(new DateString('2020-07-18T22:10:06Z'),
+  'one',
+  ''
+)
+const b = new JournalEntry(new DateString('2020-07-17T23:10:06Z'),
+  'two',
+  ''
+)
+hydrate(<Journal entries={[a, b]} />, document.getElementById('root'))

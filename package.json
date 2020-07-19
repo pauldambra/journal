@@ -7,9 +7,9 @@
   "author": "Paul D'Ambra <paul.dambra@gmail.com> (https://pauldambra.dev/)",
   "license": "CC-BY-SA-4.0",
   "scripts": {
-    "pretest": "standard --fix",
+    "pretest": "standardx **/*.ts* --fix",
     "test": "jest",
-    "build": "tsc --project tsconfig.json && webpack && find src -type f -name '*.js*' -delete",
+    "build": "tsc --project tsconfig.json && webpack && find src -type f -name '*.js*' -delete && find test -type f -name '*.js*' -delete",
     "start": "webpack-dev-server --open",
     "analyse": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "clean": ""
@@ -26,6 +26,8 @@
     "@types/jest": "^26.0.5",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
@@ -34,8 +36,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "source-map-loader": "^1.0.1",
-    "standard": "^14.3.4",
     "standard-loader": "^7.0.0",
+    "standardx": "^5.0.0",
     "ts-jest": "^26.1.3",
     "ts-loader": "^8.0.1",
     "typescript": "^3.9.7",
@@ -44,10 +46,21 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "standard": {
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
     "ignore": [
       "docs/",
       "node_modules/"
     ]
-  }
+  },
+  "dependencies": {}
 }
