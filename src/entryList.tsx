@@ -2,18 +2,25 @@ import * as React from 'react'
 import {cyrb53} from './fancyHash'
 import {DateString} from './dateString'
 import {JournalEntry} from './JournalEntry'
-import {useState} from "react";
 
-export interface EntryListProps {
-    entries: JournalEntry[];
+interface CanSelectEntry {
     selectEntry: (e: JournalEntry) => void;
     selectedEntry: JournalEntry;
 }
 
-interface EntryProps {
+export interface EntryListProps
+    extends CanSelectEntry {
+    entries: JournalEntry[];
+}
+
+interface DateGroupProps
+    extends EntryListProps {
+    date: string,
+}
+
+interface EntryProps
+    extends CanSelectEntry{
     entry: JournalEntry;
-    selectEntry: (e: JournalEntry) => void;
-    selectedEntry: JournalEntry;
 }
 
 const Entry = (props: EntryProps) => {
@@ -34,18 +41,11 @@ const Entry = (props: EntryProps) => {
     )
 }
 
-interface DateGroupProps {
-    date: string,
-    listings: JournalEntry[]
-    selectEntry: (e: JournalEntry) => void
-    selectedEntry: JournalEntry
-}
-
 const DateGroup = (props: DateGroupProps) => {
     return (
         <div className='date' data-date={props.date}>
             <h1>{props.date}</h1>
-            {props.listings.map(l =>
+            {props.entries.map(l =>
                 <Entry key={cyrb53(l.title)} entry={l}
                        selectEntry={props.selectEntry}
                        selectedEntry={props.selectedEntry}
@@ -88,7 +88,7 @@ export const EntryList = (props: EntryListProps) => {
                     const hashedDate = cyrb53(dk)
                     return (
                         <DateGroup key={hashedDate} date={dk}
-                                   listings={listingByDate[dk]}
+                                   entries={listingByDate[dk]}
                                    selectEntry={props.selectEntry}
                                    selectedEntry={props.selectedEntry}
                         />)

@@ -1,15 +1,10 @@
 import {fireEvent, render} from '@testing-library/react'
-import { describe, expect, it } from '@jest/globals'
+import {describe, expect, it} from '@jest/globals'
 import * as React from 'react'
-import { Journal } from '../src/journal'
-import { DateString } from '../src/dateString'
-import { JournalEntry } from '../src/JournalEntry'
-
-function selectAnEntry(container: HTMLElement, dateSelector: string) {
-  const day = container.querySelector('.listing [data-date="' + dateSelector + '"]')
-  const entry = day.querySelector('.entry')
-  return entry;
-}
+import {Journal} from '../src/journal'
+import {DateString} from '../src/dateString'
+import {JournalEntry} from '../src/JournalEntry'
+import {selectAnEntry} from "./interactions";
 
 describe('the journal entries are listed', function () {
 
@@ -25,11 +20,7 @@ describe('the journal entries are listed', function () {
       )]
 
     const { container } = render(<Journal entries={entries} />)
-    const day = container.querySelector('.listing [data-date="2020-07-18"]')
-    const entry = day.querySelector('.entry')
-
-    fireEvent.click(entry)
-
+    const entry = selectAnEntry(container, "2020-07-18")
     expect(entry.classList).toContain("selected")
   })
 

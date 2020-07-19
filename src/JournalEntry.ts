@@ -9,12 +9,10 @@ const uuidv4 = () =>
         });
 
 export class JournalEntry {
-    readonly id: string;
-
     constructor(
         readonly date: DateString,
         readonly title: string,
-        readonly text: string) {
-        this.id = uuidv4()
+        readonly text: string,
+        readonly id: string = uuidv4()) {
     }
 }
