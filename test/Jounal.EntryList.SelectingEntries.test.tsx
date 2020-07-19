@@ -5,6 +5,12 @@ import { Journal } from '../src/journal'
 import { DateString } from '../src/dateString'
 import { JournalEntry } from '../src/JournalEntry'
 
+function selectAnEntry(container: HTMLElement, dateSelector: string) {
+  const day = container.querySelector('.listing [data-date="' + dateSelector + '"]')
+  const entry = day.querySelector('.entry')
+  return entry;
+}
+
 describe('the journal entries are listed', function () {
 
   it('clicking one selects it in the listing view', () => {
@@ -25,5 +31,29 @@ describe('the journal entries are listed', function () {
     fireEvent.click(entry)
 
     expect(entry.classList).toContain("selected")
+  })
+
+  it('only one entry can be selected at a time', () => {
+    const entries: JournalEntry[] = [
+      new JournalEntry(new DateString('2020-07-18T22:10:06Z'),
+          'one',
+          ''
+      ),
+      new JournalEntry(new DateString('2020-07-17T23:10:06Z'),
+          'two',
+          ''
+      )]
+
+    const { container } = render(<Journal entries={entries} />)
+    const entry = selectAnEntry(container, '2020-07-18');
+    const theOtherEntry = selectAnEntry(container, '2020-07-17');
+
+    fireEvent.click(entry)
+    expect(entry.classList).toContain("selected")
+    expect(theOtherEntry.classList).not.toContain("selected")
+
+    fireEvent.click(theOtherEntry)
+    expect(theOtherEntry.classList).toContain("selected")
+    expect(entry.classList).not.toContain("selected")
   })
 })

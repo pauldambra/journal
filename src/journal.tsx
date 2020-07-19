@@ -16,6 +16,8 @@ const EditorPane = () => {
 }
 
 export const Journal = (props: JournalProps) => {
+  const [selectedEntry, setSelectedEntry] = React.useState(null);
+
   const styles = {
     width: '100vw',
     height: '100vh',
@@ -26,7 +28,7 @@ export const Journal = (props: JournalProps) => {
 
   return (
     <div style={styles}>
-      <EntryList entries={props.entries} />
+      <EntryList entries={props.entries} selectEntry={setSelectedEntry} selectedEntry={selectedEntry}/>
       <EditorPane />
     </div>
   )
