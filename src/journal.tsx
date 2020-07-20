@@ -16,11 +16,6 @@ function safelyReadText(props: EditorProps) {
 }
 
 const EditorPane = (props: EditorProps) => {
-    const styles = {
-        flexGrow: 1,
-        backgroundColor: 'white',
-        height: '96%'
-    }
 
     const initialState = safelyReadText(props);
     console.log({
@@ -43,18 +38,47 @@ const EditorPane = (props: EditorProps) => {
         setEntryText(newText)
     }
 
+    const editorStyle = {
+        flexGrow: 1,
+        backgroundColor: 'white',
+        height: '96%'
+    }
+
+    // here's some fun. need to declare this is the immutable string "column
+    // for some reason typescript can't use the regular string ¯\_(ツ)_/¯
+    const flexDirection: "column" = "column"
+    const editWrapperStyle = {
+        display: "flex",
+        flexDirection: flexDirection
+    }
+
+    const paneStyle = {
+        width: "93%",
+        margin: "1% 2%",
+        height: "90%"
+    }
+
+    const textAreaStyle = {
+        width: "93%",
+        margin: "1% 2%",
+        height: "90%",
+    }
+
     return (
-        <div style={styles} className="editor">
-            <div className="edit-pane">
-                <label>
-                    Journal Entry
-                    <textarea
-                        value={entryText}
-                        onChange={textChanged}/>
-                </label>
-            </div>
-            <div className="rendered">
-                {renderedText}
+        <div style={editorStyle} className="editor">
+            <div style={editWrapperStyle}>
+                <div className="edit-pane" style={paneStyle}>
+                    <label>
+                        Journal Entry
+                        <textarea
+                            style={textAreaStyle}
+                            value={entryText}
+                            onChange={textChanged}/>
+                    </label>
+                </div>
+                <div className="rendered" style={paneStyle}>
+                    {renderedText}
+                </div>
             </div>
         </div>
     )
