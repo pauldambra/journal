@@ -11,6 +11,14 @@ I've made a little of what I want with some typescript React rendered to HTML bu
 
 I'm pretty much building Confluence :/
 
+# Prerequisites
+
+* `brew install terraform`
+* `curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"`
+* `sudo installer -pkg AWSCLIV2.pkg -target /`
+* `rm AWSCLIV2.pkg`
+* `aws configure`
+
 # TODO
 
 ## behaviour
