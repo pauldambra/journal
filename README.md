@@ -1,7 +1,15 @@
 
+# An unnecessary journaling tool
 
+A book with actual pages of paper works well cos it is separate to my laptop
 
+But where's the fun in that
 
+I want to learn some stuff by building towards a goal
+
+I've made a little of what I want with some typescript React rendered to HTML but it's already getting clunky
+
+I'm pretty much building Confluence :/
 
 # TODO
 
@@ -14,7 +22,13 @@
  - [ ] journal entry should render markdown web links (and open them in a new tab)
  - [ ] journal entry should render markdown image links
  - [ ] journal entry should render markdown tables
+ - [ ] journal entry should allow inline image placement and editing
  - [ ] some prettiness for UI
+ - [ ] to do list in the app
+ - [ ] tagging for to-dos
+ - [ ] tagging for entries
+ - [ ] linking between todos and journal (single links)
+ - [ ] linking between todos and journal (multi links)
  
 ## system
 
